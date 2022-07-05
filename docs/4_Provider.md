@@ -122,3 +122,42 @@ BaseService는 주입을 받을 수 있는 클래스로 선언되어 있지 않�
 
 -- --
 provider-examples module 참고
+
+500 error 발생
+
+### 해결
+serviceB 생성자에 serviceA를 주입하자.
+```ts
+@Injectable()
+export class ServiceB extends BaseService {
+  constructor(private readonly _serviceA: ServiceA) {
+    super(_serviceA);
+  }
+  getHello(): string {
+    return this.doSomeFuncFromA();
+  }
+}
+```
+
+하지만 super로 필요한 프로바이더를 전달하는 것은 매우 귀찮음
+이럴때 **속성기반 프로바이더!**
+
+## 속성기반 프로바이더 @Inject()
+```ts
+export class BaseService {
+  @Inject(ServiceA) private readonly serviceA: ServiceA;
+    doSomeFuncFromA(): string {
+    return this.serviceA.getHello();
+  }
+}
+```
+
+Inject데코레이터의 인자는 '타입(클래스 이름)', '문자열', '심볼' 이 될 수 있다.
+어떤 걸 쓸지는 프로바이더가 어떻게 정의되었는지에 따라 다르다.
+@Injectable()이 선언된 클래스는 **클래스 이름**을 쓰면된다.
+**문자열, 심볼**은 커스텀 프로바이더의 경우 쓴다.
+
+
+단,
+상속관계에 있지 않는 경우는 속성기반 주입을 사용하지 않고,
+생성자 기반 주입을 사용하는 것을 권장한다.
