@@ -121,4 +121,4 @@ BaseService는 주입을 받을 수 있는 클래스로 선언되어 있지 않�
 **Nest의 IoC 컨테이너**는 생성자에 선언된 ServiceA를 주입하지 않습니다. 
 
 -- --
-06.30 프로바이더 등록과 사용 코드 작성 중 
+provider-examples module 참고

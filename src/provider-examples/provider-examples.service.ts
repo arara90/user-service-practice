@@ -1,15 +1,11 @@
-import { Injectable } from "@nestjs/common";
-
-@Injectable()
-export class ProviderExamplesService {
-}
+import { Injectable } from '@nestjs/common';
 
 export class BaseService {
   constructor(private readonly serviceA: ServiceA) {
   }
 
   getHello(): string {
-    return "Hello World BASE!";
+    return 'Hello World BASE!';
   }
 
   doSomeFuncFromA(): string {
@@ -20,7 +16,7 @@ export class BaseService {
 @Injectable()
 export class ServiceA {
   getHello(): string {
-    return "Hello World A!";
+    return 'Hello World A!';
   }
 }
 

@@ -1,5 +1,5 @@
 import { Controller, Get } from "@nestjs/common";
-import { ServiceB } from "../../dist/provider-examples/provider-examples.service";
+import { ServiceB } from "./provider-examples.service";
 
 @Controller('provider-examples')
 export class ProviderExamplesController {
@@ -7,8 +7,9 @@ export class ProviderExamplesController {
     private readonly serviceB: ServiceB,
   ) { }
 
-  @Get('/serviceB')
+  @Get('/service-b')
   getHelloC(): string {
+    console.log('/service-b')
     return this.serviceB.getHello();
   }
 
